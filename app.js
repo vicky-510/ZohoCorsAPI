@@ -8,11 +8,29 @@ const port = 3000;
 // import dotenv from 'dotenv';
 // dotenv.config();
 
-// Middleware to parse JSON requests
-app.use(express.json());
-app.use(cors());
 
-// Environment variables from .env
+app.use(express.json());
+
+  
+  // Set CORS headers middleware
+  app.use((req, res, next) => {
+
+    res.setHeader("Access-Control-Allow-Origin", "*"); 
+  
+    res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS");
+  
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Content-Type-Options, Accept, X-Requested-With, Origin, Access-Control-Request-Method, Access-Control-Request-Headers");
+  
+    res.setHeader("Access-Control-Allow-Credentials", true);
+  
+    res.setHeader("Access-Control-Max-Age", 7200); 
+  
+    if (req.method === 'OPTIONS') {
+      return res.status(204).end(); 
+    }
+  
+    next();
+  });
 
 // Function to fetch data from Zoho Creator using public key
 const fetchDataFromZoho = async () => {
