@@ -1,12 +1,16 @@
 import express from 'express' 
 import fetch from 'node-fetch';
 const app = express();
+import cors from 'cors';
+
 const port = 3000;
+
 // import dotenv from 'dotenv';
 // dotenv.config();
 
 // Middleware to parse JSON requests
 app.use(express.json());
+app.use(cors());
 
 // Environment variables from .env
 
