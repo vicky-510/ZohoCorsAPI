@@ -13,15 +13,28 @@ app.use(express.json());
 
   
   // Set CORS headers middleware
-  app.use(cors({
-    origin: 'https://c0022905-0667-4f4a-8672-406eb6c3d7c9.zappsusercontent.com', 
-    methods: ['GET', 'POST', 'DELETE', 'PUT', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-    credentials: true,
-    maxAge: 7200, // Pre-flight cache duration (2 hours)
-  }));
+  app.use((req, res, next) => {
+    res.setHeader(
+      "Access-Control-Allow-Origin",
+      "https://c0022905-0667-4f4a-8672-406eb6c3d7c9.zappsusercontent.com"
+    );
+    res.setHeader(
+      "Access-Control-Allow-Methods",
+      "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS,CONNECT,TRACE"
+    );
+    res.setHeader(
+      "Access-Control-Allow-Headers",
+      "Content-Type, Authorization, X-Content-Type-Options, Accept, X-Requested-With, Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+    );
+    res.setHeader("Access-Control-Allow-Credentials", true);
+    res.setHeader("Access-Control-Allow-Private-Network", true);
+    //  Firefox caps this at 24 hours (86400 seconds). Chromium (starting in v76) caps at 2 hours (7200 seconds). The default value is 5 seconds.
+    res.setHeader("Access-Control-Max-Age", 7200);
   
-  app.options('*', cors());
+    next();
+  });
+  
+//   app.options('*', cors());
 // Function to fetch data from Zoho Creator using public key
 const fetchDataFromZoho = async () => {
   const apiUrl = `https://www.zohoapis.com/creator/custom/zdchackathon1131/getProducts?publickey=QJMujAT3g9gwJ509FPeEhj3Qs`;  
