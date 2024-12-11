@@ -14,7 +14,7 @@ app.use(express.json());
   
   // Set CORS headers middleware
   app.use(cors({
-    origin: 'https://c0022905-0667-4f4a-8672-406eb6c3d7c9.zappsusercontent.com/', 
+    origin: 'https://c0022905-0667-4f4a-8672-406eb6c3d7c9.zappsusercontent.com', 
     methods: ['GET', 'POST', 'DELETE', 'PUT', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
     credentials: true,
