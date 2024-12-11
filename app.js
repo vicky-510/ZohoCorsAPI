@@ -13,9 +13,16 @@ app.use(express.json());
 
   
   // Set CORS headers middleware
-  app.use(cors({
-    origin: "https://c0022905-0667-4f4a-8672-406eb6c3d7c9.zappsusercontent.com"
-}));
+  res.setHeader("Access-Control-Allow-Origin", "*");  
+res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
+res.setHeader("Access-Control-Allow-Credentials", true);
+res.setHeader("Access-Control-Max-Age", 7200); 
+app.options("*", (req, res) => {
+    console.log("Preflight request received");
+    res.status(204).send();  // Respond to preflight request
+  });
+  
 
 //   app.use((req, res, next) => {
 //     res.setHeader("Access-Control-Allow-Origin", "https://c0022905-0667-4f4a-8672-406eb6c3d7c9.zappsusercontent.com"); 
