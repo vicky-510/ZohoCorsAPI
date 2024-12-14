@@ -14,10 +14,12 @@ app.use(express.json());
   
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://911473d3-2688-4ae0-9e5e-37e6c83f178d.zappsusercontent.com');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS'); // Specify allowed methods
+  res.setHeader('Access-Control-Allow-Origin', 'https://911473d3-2688-4ae0-9e5e-37e6c83f178d.zappsusercontent.com');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS'); 
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
-  res.header('Access-Control-Allow-Credentials', 'true'); // If sending cookies or auth headers
+  res.setHeader('Access-Control-Allow-Credentials', 'true'); 
+  res.setHeader("Access-Control-Max-Age", 7200); 
+
   next();
 });
 
