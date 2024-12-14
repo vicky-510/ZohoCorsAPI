@@ -12,12 +12,22 @@ const port = 3000;
 app.use(express.json());
 
   
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://911473d3-2688-4ae0-9e5e-37e6c83f178d.zappsusercontent.com');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS'); // Specify allowed methods
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
+  res.header('Access-Control-Allow-Credentials', 'true'); // If sending cookies or auth headers
+  next();
+});
+
   // Set CORS headers middleware
-  res.setHeader("Access-Control-Allow-Origin", "https://c0022905-0667-4f4a-8672-406eb6c3d7c9.zappsusercontent.com");  
-res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
-res.setHeader("Access-Control-Allow-Credentials", true);
-res.setHeader("Access-Control-Max-Age", 7200); 
+//   res.setHeader("Access-Control-Allow-Origin", "https://c0022905-0667-4f4a-8672-406eb6c3d7c9.zappsusercontent.com");  
+// res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+// res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
+// res.setHeader("Access-Control-Allow-Credentials", true);
+// res.setHeader("Access-Control-Max-Age", 7200); 
+
 // app.options("*", (req, res) => {
 //     console.log("Preflight request received");
 //     res.status(204).send();  // Respond to preflight request
